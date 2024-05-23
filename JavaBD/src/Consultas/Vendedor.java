@@ -8,7 +8,10 @@ package Consultas;
  *
  * @author SENA
  */
+import java.awt.BorderLayout;
 import java.awt.EventQueue;
+import java.awt.Frame;
+import java.awt.Window;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
@@ -22,6 +25,9 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import javax.swing.JOptionPane;
+import javax.swing.SwingUtilities;
+import javax.swing.WindowConstants;
 public class Vendedor extends javax.swing.JFrame {
 
     /**
@@ -38,7 +44,7 @@ public class Vendedor extends javax.swing.JFrame {
             setTitle(ex.toString());
         }
     }
-
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -57,24 +63,29 @@ public class Vendedor extends javax.swing.JFrame {
         ALTAS = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
+        LblConsultar = new javax.swing.JLabel();
+        Tf3 = new javax.swing.JTextField();
+        Btn3 = new javax.swing.JButton();
+        BtnEliminar = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel1.setBackground(new java.awt.Color(252, 238, 193));
         jPanel1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jPanel1.setLayout(null);
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel1.setText("VENDEDORES");
         jPanel1.add(jLabel1);
-        jLabel1.setBounds(260, 60, 130, 40);
+        jLabel1.setBounds(320, 30, 130, 40);
 
         jLabel2.setBackground(new java.awt.Color(255, 255, 255));
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel2.setText("NOMBRE");
         jPanel1.add(jLabel2);
-        jLabel2.setBounds(130, 140, 80, 20);
+        jLabel2.setBounds(50, 140, 80, 20);
 
         jTextField1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -82,15 +93,15 @@ public class Vendedor extends javax.swing.JFrame {
             }
         });
         jPanel1.add(jTextField1);
-        jTextField1.setBounds(220, 140, 170, 22);
+        jTextField1.setBounds(140, 140, 180, 30);
 
         jLabel3.setBackground(new java.awt.Color(255, 255, 255));
         jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel3.setText("COMISIÓN");
         jPanel1.add(jLabel3);
-        jLabel3.setBounds(130, 200, 80, 20);
+        jLabel3.setBounds(50, 200, 80, 20);
         jPanel1.add(jTextField2);
-        jTextField2.setBounds(220, 200, 170, 22);
+        jTextField2.setBounds(140, 200, 180, 30);
 
         ALTAS.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         ALTAS.setText("ALTAS");
@@ -101,13 +112,13 @@ public class Vendedor extends javax.swing.JFrame {
             }
         });
         jPanel1.add(ALTAS);
-        ALTAS.setBounds(280, 300, 75, 20);
+        ALTAS.setBounds(200, 300, 80, 30);
 
         jLabel4.setBackground(new java.awt.Color(255, 255, 255));
         jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel4.setText("RESULTADO");
         jPanel1.add(jLabel4);
-        jLabel4.setBounds(190, 270, 70, 16);
+        jLabel4.setBounds(100, 260, 180, 16);
 
         jButton1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jButton1.setText("PRODUTO ALTAS");
@@ -118,9 +129,49 @@ public class Vendedor extends javax.swing.JFrame {
             }
         });
         jPanel1.add(jButton1);
-        jButton1.setBounds(440, 300, 110, 30);
+        jButton1.setBounds(10, 420, 110, 30);
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 620, 400));
+        LblConsultar.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        LblConsultar.setText("INGRESE CODIGO DE CONSULTA");
+        jPanel1.add(LblConsultar);
+        LblConsultar.setBounds(410, 140, 190, 30);
+        jPanel1.add(Tf3);
+        Tf3.setBounds(610, 140, 160, 30);
+
+        Btn3.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        Btn3.setText("CONSULTAR");
+        Btn3.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        Btn3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Btn3ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(Btn3);
+        Btn3.setBounds(640, 200, 120, 30);
+
+        BtnEliminar.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        BtnEliminar.setText("ELIMINAR");
+        BtnEliminar.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        BtnEliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnEliminarActionPerformed(evt);
+            }
+        });
+        jPanel1.add(BtnEliminar);
+        BtnEliminar.setBounds(500, 200, 100, 30);
+
+        jButton2.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jButton2.setText("FINALIZAR");
+        jButton2.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jButton2);
+        jButton2.setBounds(650, 420, 110, 30);
+
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 780, 530));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -132,7 +183,7 @@ public class Vendedor extends javax.swing.JFrame {
 
                 jLabel4.setText("");
                 try {
-                    try (Connection conexion = DriverManager.getConnection("jdbc:mysql://localhost/base2","root","")) {
+                    try (Connection conexion = DriverManager.getConnection("jdbc:mysql://sql10.freemysqlhosting.net/sql10708655","sql10708655","V3MmHRxhCd")) {
                     Statement comando=conexion.createStatement();
                     comando.executeUpdate("insert into vendedores(nombre,comision) values('"+jTextField1.getText()+"',"+jTextField2.getText()+")");
 
@@ -160,6 +211,70 @@ public class Vendedor extends javax.swing.JFrame {
         abrir.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void Btn3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Btn3ActionPerformed
+        // TODO add your handling code here:
+        Btn3.addActionListener(new ActionListener() {
+        public void actionPerformed(ActionEvent arg0) {
+        jLabel4.setText("");
+        jTextField1.setText("");
+        jTextField2.setText("");
+        try {
+            Connection
+            conexion=DriverManager.getConnection("jdbc:mysql://sql10.freemysqlhosting.net/sql10708655","sql10708655","V3MmHRxhCd");
+            Statement comando=conexion.createStatement();
+            ResultSet registro = comando.executeQuery("select nombre,comision from vendedores where vendedor="+Tf3.getText());
+            if (registro.next()==true) {
+                jTextField1.setText(registro.getString("nombre"));
+                jTextField2.setText(registro.getString("comision"));
+            } else {
+                jLabel4.setText("No existe un artículo con dicho código");
+               }
+        conexion.close();
+        } catch(SQLException ex){
+            setTitle(ex.toString());
+        }
+        }
+    });
+     
+    }//GEN-LAST:event_Btn3ActionPerformed
+
+    private void BtnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnEliminarActionPerformed
+        // TODO add your handling code here:
+        BtnEliminar.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent arg0) {
+            jLabel4.setText("");
+
+            try {
+                Connection
+                conexion=DriverManager.getConnection("jdbc:mysql://sql10.freemysqlhosting.net/sql10708655","sql10708655","V3MmHRxhCd");
+                Statement comando=conexion.createStatement();
+                int eliminar = comando.executeUpdate("DELETE FROM articulo WHERE codigo ="+Tf3.getText());
+                if (eliminar > 0) {
+                    jLabel4.setText("Artículo Eliminado");
+                } else {
+                    jLabel4.setText("No existe un artículo con dicho código");
+                   }
+            conexion.close();
+            } catch(SQLException ex){
+                setTitle(ex.toString());
+            }
+            }
+        });
+    }//GEN-LAST:event_BtnEliminarActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+       // Cierra la ventana actual
+        this.dispose();
+
+        // Cierra la ventana "Producto" si está abierta
+        for (Window window : Window.getWindows()) {
+            if (window instanceof Producto) {
+                window.dispose();
+            }
+        }
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -194,11 +309,19 @@ public class Vendedor extends javax.swing.JFrame {
                 new Vendedor().setVisible(true);
             }
         });
+        
+        
+
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton ALTAS;
+    private javax.swing.JButton Btn3;
+    private javax.swing.JButton BtnEliminar;
+    private javax.swing.JLabel LblConsultar;
+    private javax.swing.JTextField Tf3;
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
